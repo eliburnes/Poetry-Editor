@@ -8,10 +8,12 @@
 import Foundation
 import AppKit
 
-class CustomNSTextView: NSTextView
+class CustomNSTextView: NSTextView, NSTextViewDelegate
 {
     /// Holds the attached line number gutter.
     private var lineNumberGutter: LineNumberGutter?
+    private var lineNumberListener: LineNumberListener?
+    private var trackedLineNumber: Int = 0
     
     override func paste(_ sender: Any?) {
         // Call super to perform the default paste operation
@@ -34,7 +36,29 @@ class CustomNSTextView: NSTextView
         return window?.makeFirstResponder(self) ?? false
     }
     
-    public func setUpLineNumbers(){
+    func textViewDidChangeSelection(_ notification: Notification) {
+        let newLineNumber = calculateLineNumber()
+        if newLineNumber != trackedLineNumber{
+            lineNumberListener?.handleNewLineNumber(newLineNumber)
+            trackedLineNumber = newLineNumber
+        }
+    }
+    
+    // Calculate the current line number based on the cursor's position
+    func calculateLineNumber() -> Int {
+        let selectedRange = selectedRange()
+        let contentUpToCursor = (string as NSString).substring(to: selectedRange.location)
+        let lineNumber = contentUpToCursor.components(separatedBy: "\n").count
+        return lineNumber
+    }
+    
+    public func configureDelegate(){
+        delegate = self
+    }
+    
+    public func setUpLineNumbers(_ lineNumberListener: LineNumberListener){
+        self.lineNumberListener = lineNumberListener
+        
         guard let scrollView = self.enclosingScrollView else {
             fatalError("Unwrapping the text views scroll view failed!")
         }

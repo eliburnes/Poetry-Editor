@@ -23,7 +23,7 @@ private let GUTTER_WIDTH: CGFloat = 40.0
 
 /// Adds line numbers to a NSTextField.
 class LineNumberGutter: NSRulerView {
-
+    
     /// Holds the background color.
     internal var backgroundColor: NSColor {
         didSet {
@@ -57,20 +57,6 @@ class LineNumberGutter: NSRulerView {
         self.clientView = textView
         // Define the ruler's width.
         self.ruleThickness = GUTTER_WIDTH
-    }
-
-    ///  Initializes a default LineNumberGutter, attached to the given textView.
-    ///  Default foreground color: hsla(0, 0, 0, 0.55);
-    ///  Default background color: hsla(0, 0, 0.95, 1);
-    ///
-    ///  - parameter textView: NSTextView to attach the LineNumberGutter to.
-    ///
-    ///  - returns: An initialized LineNumberGutter object.
-    convenience init(withTextView textView: NSTextView) {
-        let fg = NSColor(calibratedHue: 0, saturation: 0, brightness: 0, alpha: 1)
-        let bg = NSColor(calibratedHue: 0, saturation: 0, brightness: 0, alpha: 1)
-        // Call the designated initializer.
-        self.init(withTextView: textView, foregroundColor: fg, backgroundColor: bg)
     }
 
     required init(coder: NSCoder) {

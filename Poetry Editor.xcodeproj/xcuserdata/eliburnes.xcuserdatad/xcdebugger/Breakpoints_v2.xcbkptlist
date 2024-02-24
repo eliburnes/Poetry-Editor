@@ -8,15 +8,110 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "026F0F19-5A73-4E35-9EDD-A737943D2A9A"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Poetry Editor/CustomNSTextView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "paste(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "21599823-5C4D-4036-A76B-48A17A80892F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Poetry Editor/LineNumberGutter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "drawHashMarksAndLabels(in:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "21599823-5C4D-4036-A76B-48A17A80892F - a6fb2869c853e4a7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poetry_Editor.LineNumberGutter.__allocating_init(coder: __C.NSCoder) -&gt; Poetry_Editor.LineNumberGutter"
+                  moduleName = "Poetry Editor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eliburnes/Projects/Poetry%20Editor/Poetry%20Editor/LineNumberGutter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "21599823-5C4D-4036-A76B-48A17A80892F - 905e68d396a9f112"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poetry_Editor.LineNumberGutter.init(coder: __C.NSCoder) -&gt; Poetry_Editor.LineNumberGutter"
+                  moduleName = "Poetry Editor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eliburnes/Projects/Poetry%20Editor/Poetry%20Editor/LineNumberGutter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "21599823-5C4D-4036-A76B-48A17A80892F - 10bc24ba8e65c342"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poetry_Editor.LineNumberGutter.drawHashMarksAndLabels(in: __C.CGRect) -&gt; ()"
+                  moduleName = "Poetry Editor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eliburnes/Projects/Poetry%20Editor/Poetry%20Editor/LineNumberGutter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "188">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5408D9D-6D82-4456-B007-3A489E14510D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Poetry Editor/LineNumberGutter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "drawHashMarksAndLabels(in:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "92A98994-EC23-4BEE-B4ED-F767339BF483"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Poetry Editor/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "handleNewLineNumber(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
