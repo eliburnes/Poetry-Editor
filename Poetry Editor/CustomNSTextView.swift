@@ -44,13 +44,11 @@ class CustomNSTextView: NSTextView
         
         self.lineNumberGutter = LineNumberGutter(withTextView: self, foregroundColor: gutterForegroundColor, backgroundColor: gutterBackgroundColor)
         
-       // scrollView.verticalRulerView  = self.lineNumberGutter
+        scrollView.verticalRulerView  = self.lineNumberGutter
         scrollView.hasHorizontalRuler = false
         scrollView.hasVerticalRuler   = true
         scrollView.rulersVisible      = true
-        
-        scrollView.verticalRulerView?.translatesAutoresizingMaskIntoConstraints = false
-        
+                
         self.addObservers()
     }
     

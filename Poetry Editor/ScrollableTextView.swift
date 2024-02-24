@@ -40,16 +40,20 @@ class ScrollableTextView: NSScrollView {
         textView.textContainer?.containerSize = NSMakeSize(contentSize.width, CGFloat.greatestFiniteMagnitude)
         textView.textContainer?.widthTracksTextView = true
         textView.textColor = NSColor.black
+
+        
+        if textView.textContainer == nil{
+            print("text container is nil")
+        }
         
         textView.isEditable = true
         textView.isHidden = false
         textView.textContainerInset = NSSize(width: 12, height: 16)
-        textView.translatesAutoresizingMaskIntoConstraints = false
-
         
         // Set the textView as the documentView of the scrollView
         self.documentView = textView
-        
+    }
+    public func addLineNumbersToTextView(){
         textView.setUpLineNumbers()
     }
 }

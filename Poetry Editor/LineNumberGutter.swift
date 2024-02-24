@@ -163,6 +163,8 @@ class LineNumberGutter: NSRulerView {
               let font     = textView.font else {
             return
         }
+        var adjustedY = textView.textContainerInset.height + yPos
+
         // Define attributes for the attributed string.
         let attrs = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: self.foregroundColor]
         // Define the attributed string.
@@ -172,6 +174,6 @@ class LineNumberGutter: NSRulerView {
         // Calculate the x position, within the gutter.
         let xPosition        = GUTTER_WIDTH - (attributedString.size().width + 5)
         // Draw the attributed string to the calculated point.
-        attributedString.draw(at: NSPoint(x: xPosition, y: relativePoint.y + yPos))
+        attributedString.draw(at: NSPoint(x: xPosition, y: relativePoint.y + adjustedY))
     }
 }

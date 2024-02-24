@@ -14,6 +14,7 @@ class ViewController: NSViewController {
     {
         var view = ScrollableTextView()
         view.textView.backgroundColor = NSColor.green
+        view.addLineNumbersToTextView()
         return view
     }()
     
