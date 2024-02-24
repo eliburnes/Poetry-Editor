@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let rootVc = ViewController()
         
-        let windowRect = NSRect(x: 0, y: 0, width: 800, height: 800)
+        let windowRect = NSRect(x: 0, y: 0, width: 1000, height: 800)
         
         window = NSWindow(
             contentRect: windowRect,

@@ -31,7 +31,7 @@ class ViewController: NSViewController, LineNumberListener
     
     func setDraftSummaryText(){
         var text = ""
-        for key in lineNumberToDraftTextMap.keys{
+        for key in lineNumberToDraftTextMap.keys.sorted(){
             if let note = lineNumberToDraftTextMap[key] {
                 if !note.isEmpty{
                     text.append("Line \(key): \(note) \n")
@@ -44,34 +44,51 @@ class ViewController: NSViewController, LineNumberListener
     let primaryTextView: ScrollableTextView =
     {
         var view = ScrollableTextView()
-        view.textView.backgroundColor = NSColor.green
         return view
     }()
     
     let draftTextView: ScrollableTextView =
     {
         var view = ScrollableTextView()
-        view.textView.backgroundColor = NSColor.red
         return view
     }()
     
     let draftTextViewTitle: NSTextView = {
         let view = NSTextView()
+        view.string = "Line 1 notes"
+        view.isEditable = false
+        return view
+    }()
+    
+    let combinedDraftTextViewTitle: NSTextView = {
+        let view = NSTextView()
+        view.string = "Line by line notes:"
         view.isEditable = false
         return view
     }()
     
     let combinedDraftTextView: ScrollableTextView = {
         var view = ScrollableTextView()
-        view.textView.backgroundColor = NSColor.blue
+        view.textView.isEditable = false
+        view.textView.backgroundColor = NSColor.lightGray
         return view
-
+    }()
+    
+    let generalNotesTextView: ScrollableTextView = {
+        var view = ScrollableTextView()
+        return view
+    }()
+    
+    let generalNotesTitle: NSTextView = {
+        let view = NSTextView()
+        view.string = "General notes"
+        return view
     }()
     
     let draftView: NSView = NSView()
     
     let toggleButton: NSButton = {
-        let button = NSButton(title: "Toggle Draft View", target: self, action: #selector(toggleRightView))
+        let button = NSButton(title: "Toggle Notes View", target: self, action: #selector(toggleRightView))
             return button
         }()
     
@@ -88,10 +105,13 @@ class ViewController: NSViewController, LineNumberListener
         view.addSubview(primaryTextView)
         view.addSubview(draftView)
         view.addSubview(toggleButton)
-
+        
+        draftView.addSubview(combinedDraftTextViewTitle)
         draftView.addSubview(draftTextViewTitle)
         draftView.addSubview(draftTextView)
         draftView.addSubview(combinedDraftTextView)
+        draftView.addSubview(generalNotesTextView)
+        draftView.addSubview(generalNotesTitle)
         primaryTextView.addLineNumbersToTextView(lineNumberListener: self)
     }
     
@@ -129,7 +149,10 @@ class ViewController: NSViewController, LineNumberListener
         draftTextViewTitle.translatesAutoresizingMaskIntoConstraints = false
         toggleButton.translatesAutoresizingMaskIntoConstraints = false
         combinedDraftTextView.translatesAutoresizingMaskIntoConstraints = false
-                        
+        combinedDraftTextViewTitle.translatesAutoresizingMaskIntoConstraints = false
+        generalNotesTextView.translatesAutoresizingMaskIntoConstraints = false
+        generalNotesTitle.translatesAutoresizingMaskIntoConstraints = false
+        
         standardDraftViewConstraints = [
             draftView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5, constant: -20),
             draftView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -138,16 +161,23 @@ class ViewController: NSViewController, LineNumberListener
         ]
         
         let draftTextViewConstraints = [
-            draftTextView.widthAnchor.constraint(equalTo: draftView.widthAnchor),
+            draftTextView.leadingAnchor.constraint(equalTo: draftView.leadingAnchor),
             draftTextView.trailingAnchor.constraint(equalTo: draftView.trailingAnchor),
             draftTextView.topAnchor.constraint(equalTo: draftView.topAnchor, constant: 20),
-            draftTextView.heightAnchor.constraint(equalTo: draftView.heightAnchor, multiplier: 0.3, constant: -20)
+            draftTextView.heightAnchor.constraint(equalTo: draftView.heightAnchor, multiplier: 0.1, constant: -20)
         ]
         let combinedDraftTextViewConstraints = [
-            combinedDraftTextView.widthAnchor.constraint(equalTo: draftView.widthAnchor),
+            combinedDraftTextView.leadingAnchor.constraint(equalTo: draftView.leadingAnchor),
             combinedDraftTextView.trailingAnchor.constraint(equalTo: draftView.trailingAnchor),
             combinedDraftTextView.topAnchor.constraint(equalTo: draftTextView.bottomAnchor, constant: 20),
-            combinedDraftTextView.bottomAnchor.constraint(equalTo: draftView.bottomAnchor, constant: -20)
+            combinedDraftTextView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25)
+        ]
+        
+        let generalNotesTextViewConstraints = [
+            generalNotesTextView.topAnchor.constraint(equalTo: combinedDraftTextView.bottomAnchor, constant: 20),
+            generalNotesTextView.bottomAnchor.constraint(equalTo: draftView.bottomAnchor, constant: -20),
+            generalNotesTextView.leadingAnchor.constraint(equalTo: draftView.leadingAnchor),
+            generalNotesTextView.trailingAnchor.constraint(equalTo: draftView.trailingAnchor)
         ]
         
         
@@ -155,7 +185,7 @@ class ViewController: NSViewController, LineNumberListener
             primaryTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             primaryTextView.topAnchor.constraint(equalTo: view.topAnchor, constant: textViewsTopMargin),
             primaryTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
-            primaryTextView.trailingAnchor.constraint(equalTo: draftTextView.leadingAnchor, constant: -20)
+            primaryTextView.trailingAnchor.constraint(equalTo: draftView.leadingAnchor, constant: -20)
         ]
                 
         NSLayoutConstraint.activate([
@@ -165,7 +195,8 @@ class ViewController: NSViewController, LineNumberListener
             ] + standardDraftViewConstraints 
                                     + standardPrimaryTextViewConstraints
                                     + draftTextViewConstraints
-                                    + combinedDraftTextViewConstraints)
+                                    + combinedDraftTextViewConstraints
+                                    + generalNotesTextViewConstraints)
         
         // Prepare for alternate layout but don't activate yet
         primaryTextViewWidthConstraint = primaryTextView.widthAnchor.constraint(equalToConstant: calculateDesiredWidth())
@@ -182,8 +213,15 @@ class ViewController: NSViewController, LineNumberListener
             // Toggle Button Constraints
             toggleButton.topAnchor.constraint(equalTo: view.topAnchor, constant: buttonsTopMargin),
             toggleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            draftTextViewTitle.leadingAnchor.constraint(equalTo: draftView.leadingAnchor),
-            draftTextViewTitle.bottomAnchor.constraint(equalTo: draftTextView.topAnchor, constant: -16)
+            
+            draftTextViewTitle.leadingAnchor.constraint(equalTo: draftTextView.leadingAnchor),
+            draftTextViewTitle.bottomAnchor.constraint(equalTo: draftTextView.topAnchor, constant: -16),
+            
+            combinedDraftTextViewTitle.leadingAnchor.constraint(equalTo: combinedDraftTextView.leadingAnchor),
+            combinedDraftTextViewTitle.bottomAnchor.constraint(equalTo: combinedDraftTextView.topAnchor, constant: -16),
+            
+            generalNotesTitle.leadingAnchor.constraint(equalTo: generalNotesTextView.leadingAnchor),
+            generalNotesTitle.bottomAnchor.constraint(equalTo: generalNotesTextView.topAnchor, constant: -16)
         ])
     }
     
@@ -191,9 +229,8 @@ class ViewController: NSViewController, LineNumberListener
     }
     
     @objc func toggleRightView() {
-        draftTextView.isHidden = !draftTextView.isHidden
-        
-        if draftTextView.isHidden {
+        draftView.isHidden.toggle()
+        if draftView.isHidden {
             // Activate constraints for alternate layout
             primaryTextViewWidthConstraint?.constant = calculateDesiredWidth()
 
