@@ -56,6 +56,12 @@ class CustomNSTextView: NSTextView, NSTextViewDelegate
         delegate = self
     }
     
+    public func toggleLineNumbersVisibility(){
+        if let scrollView = self.enclosingScrollView {
+            scrollView.rulersVisible.toggle()
+        }
+    }
+    
     public func setUpLineNumbers(_ lineNumberListener: LineNumberListener){
         self.lineNumberListener = lineNumberListener
         

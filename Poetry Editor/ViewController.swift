@@ -87,8 +87,13 @@ class ViewController: NSViewController, LineNumberListener
     
     let draftView: NSView = NSView()
     
-    let toggleButton: NSButton = {
-        let button = NSButton(title: "Toggle Notes View", target: self, action: #selector(toggleRightView))
+    let toggleNotesViewButton: NSButton = {
+        let button = NSButton(title: "Toggle notes view", target: self, action: #selector(toggleRightView))
+            return button
+        }()
+    
+    let toggleLineNumbersButton: NSButton = {
+        let button = NSButton(title: "Toggle line numbers", target: self, action: #selector(toggleLineNumbersVisibility))
             return button
         }()
     
@@ -103,8 +108,10 @@ class ViewController: NSViewController, LineNumberListener
     
     func addSubviews() {
         view.addSubview(primaryTextView)
+        primaryTextView.clipsToBounds = true
         view.addSubview(draftView)
-        view.addSubview(toggleButton)
+        view.addSubview(toggleNotesViewButton)
+        view.addSubview(toggleLineNumbersButton)
         
         draftView.addSubview(combinedDraftTextViewTitle)
         draftView.addSubview(draftTextViewTitle)
@@ -113,6 +120,7 @@ class ViewController: NSViewController, LineNumberListener
         draftView.addSubview(generalNotesTextView)
         draftView.addSubview(generalNotesTitle)
         primaryTextView.addLineNumbersToTextView(lineNumberListener: self)
+        draftView.clipsToBounds = true
     }
     
     var primaryTextViewWidthConstraint: NSLayoutConstraint!
@@ -147,11 +155,12 @@ class ViewController: NSViewController, LineNumberListener
         draftView.translatesAutoresizingMaskIntoConstraints = false
         draftTextView.translatesAutoresizingMaskIntoConstraints = false
         draftTextViewTitle.translatesAutoresizingMaskIntoConstraints = false
-        toggleButton.translatesAutoresizingMaskIntoConstraints = false
+        toggleNotesViewButton.translatesAutoresizingMaskIntoConstraints = false
         combinedDraftTextView.translatesAutoresizingMaskIntoConstraints = false
         combinedDraftTextViewTitle.translatesAutoresizingMaskIntoConstraints = false
         generalNotesTextView.translatesAutoresizingMaskIntoConstraints = false
         generalNotesTitle.translatesAutoresizingMaskIntoConstraints = false
+        toggleLineNumbersButton.translatesAutoresizingMaskIntoConstraints = false
         
         standardDraftViewConstraints = [
             draftView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5, constant: -20),
@@ -211,9 +220,12 @@ class ViewController: NSViewController, LineNumberListener
         
         NSLayoutConstraint.activate([
             // Toggle Button Constraints
-            toggleButton.topAnchor.constraint(equalTo: view.topAnchor, constant: buttonsTopMargin),
-            toggleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            toggleNotesViewButton.topAnchor.constraint(equalTo: view.topAnchor, constant: buttonsTopMargin),
+            toggleNotesViewButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
+            toggleLineNumbersButton.topAnchor.constraint(equalTo: view.topAnchor, constant: buttonsTopMargin),
+            toggleLineNumbersButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+
             draftTextViewTitle.leadingAnchor.constraint(equalTo: draftTextView.leadingAnchor),
             draftTextViewTitle.bottomAnchor.constraint(equalTo: draftTextView.topAnchor, constant: -16),
             
@@ -226,6 +238,9 @@ class ViewController: NSViewController, LineNumberListener
     }
     
     func windowDidResize(_ notification: Notification) {
+    }
+    @objc func toggleLineNumbersVisibility(){
+        primaryTextView.textView.toggleLineNumbersVisibility()
     }
     
     @objc func toggleRightView() {
