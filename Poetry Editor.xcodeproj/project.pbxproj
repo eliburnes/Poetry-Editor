@@ -10,7 +10,10 @@
 		D7E9EF6C2B8A53CC0077276F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E9EF6B2B8A53CC0077276F /* AppDelegate.swift */; };
 		D7E9EF6E2B8A53CC0077276F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E9EF6D2B8A53CC0077276F /* ViewController.swift */; };
 		D7E9EF702B8A53CE0077276F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7E9EF6F2B8A53CE0077276F /* Assets.xcassets */; };
-		D7E9EF732B8A53CE0077276F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E9EF712B8A53CE0077276F /* Main.storyboard */; };
+		D7E9EF7B2B8A59760077276F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E9EF7A2B8A59760077276F /* main.swift */; };
+		D7E9EF7F2B8A5E7D0077276F /* CustomNSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E9EF7E2B8A5E7D0077276F /* CustomNSTextView.swift */; };
+		D7E9EF832B8A5FF80077276F /* ScrollableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E9EF822B8A5FF80077276F /* ScrollableTextView.swift */; };
+		D7E9EF852B8A73990077276F /* LineNumberGutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E9EF842B8A73990077276F /* LineNumberGutter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,8 +21,11 @@
 		D7E9EF6B2B8A53CC0077276F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7E9EF6D2B8A53CC0077276F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D7E9EF6F2B8A53CE0077276F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D7E9EF722B8A53CE0077276F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D7E9EF742B8A53CE0077276F /* Poetry_Editor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Poetry_Editor.entitlements; sourceTree = "<group>"; };
+		D7E9EF7A2B8A59760077276F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D7E9EF7E2B8A5E7D0077276F /* CustomNSTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNSTextView.swift; sourceTree = "<group>"; };
+		D7E9EF822B8A5FF80077276F /* ScrollableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableTextView.swift; sourceTree = "<group>"; };
+		D7E9EF842B8A73990077276F /* LineNumberGutter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineNumberGutter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,11 +58,14 @@
 		D7E9EF6A2B8A53CC0077276F /* Poetry Editor */ = {
 			isa = PBXGroup;
 			children = (
+				D7E9EF822B8A5FF80077276F /* ScrollableTextView.swift */,
 				D7E9EF6B2B8A53CC0077276F /* AppDelegate.swift */,
 				D7E9EF6D2B8A53CC0077276F /* ViewController.swift */,
 				D7E9EF6F2B8A53CE0077276F /* Assets.xcassets */,
-				D7E9EF712B8A53CE0077276F /* Main.storyboard */,
 				D7E9EF742B8A53CE0077276F /* Poetry_Editor.entitlements */,
+				D7E9EF7A2B8A59760077276F /* main.swift */,
+				D7E9EF7E2B8A5E7D0077276F /* CustomNSTextView.swift */,
+				D7E9EF842B8A73990077276F /* LineNumberGutter.swift */,
 			);
 			path = "Poetry Editor";
 			sourceTree = "<group>";
@@ -120,7 +129,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7E9EF702B8A53CE0077276F /* Assets.xcassets in Resources */,
-				D7E9EF732B8A53CE0077276F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,21 +141,14 @@
 			files = (
 				D7E9EF6E2B8A53CC0077276F /* ViewController.swift in Sources */,
 				D7E9EF6C2B8A53CC0077276F /* AppDelegate.swift in Sources */,
+				D7E9EF832B8A5FF80077276F /* ScrollableTextView.swift in Sources */,
+				D7E9EF852B8A73990077276F /* LineNumberGutter.swift in Sources */,
+				D7E9EF7F2B8A5E7D0077276F /* CustomNSTextView.swift in Sources */,
+				D7E9EF7B2B8A59760077276F /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		D7E9EF712B8A53CE0077276F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D7E9EF722B8A53CE0077276F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D7E9EF752B8A53CE0077276F /* Debug */ = {
@@ -280,8 +281,8 @@
 				DEVELOPMENT_TEAM = 22KV56DT7V;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Poetry Editor";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -307,8 +308,8 @@
 				DEVELOPMENT_TEAM = 22KV56DT7V;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Poetry Editor";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
